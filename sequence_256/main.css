@@ -139,8 +139,8 @@ h1 {
 }
 
 #sequence-grid .item {
-  width:120px;
-  height:120px;
+  width:200px;
+  height:200px;
   margin:6px;
   display:inline-block;
   vertical-align:top;
