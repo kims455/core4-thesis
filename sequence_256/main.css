@@ -101,11 +101,12 @@ h1 {
 .dot.t-pure-joy{ box-shadow:0 0 0 1px #FFF42B}
 .dot.t-muse-inspo{ box-shadow:0 0 0 1px #F52727}
 
-#key {
+#key{
   position:fixed;
   left:18px;
   bottom:16px;
-  z-index:5;
+  z-index:1;
+  pointer-events:none;
   font-size:13px;
 }
 

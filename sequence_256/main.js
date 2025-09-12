@@ -403,7 +403,7 @@ function positionLabels() {
 buildLabels();
 window.addEventListener("resize", positionLabels);
 
-var last = 0, SPEED = 0.25;
+var last = 0, SPEED = 0.2;
 function loop(t) {
   if (!last) last = t;
   var dt = (t - last) / 16.7; last = t;
@@ -432,7 +432,7 @@ function loop(t) {
 
     if (Math.random() < 0.002) {
       d.el.classList.add("burst");
-      setTimeout((function(elRef){ return function(){ elRef.classList.remove("burst"); }; })(d.el), 900);
+      setTimeout((function(elRef){ return function(){ elRef.classList.remove("burst"); }; })(d.el), 650);
     }
 
     d.el.style.left = d.x + "px";
