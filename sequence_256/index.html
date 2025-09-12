@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://use.typekit.net/rhj3kjw.css">
+  <link rel="icon" href="assets/brain.gif" type="image/gif">
+  <link rel="stylesheet" href="main.css">
+  <title>Sequence (256)</title>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Sequence (256)</h1>
+    <nav class="modes" aria-label="view modes">
+      <button id="mode-neurons" class="active" aria-pressed="true">Neurons (1)</button>
+      <button id="mode-seq" aria-pressed="false">Sequence (2)</button>
+    </nav>
+  </header>
+
+  <section id="brain-stage">
+  </section>
+
+  <div id="labels"></div>
+
+  <section id="sequence-grid"></section>
+
+  <aside id="key">
+    <ul>
+        <li class="coincidence">Coincidence</li>
+        <li class="abstract">Abstract</li>
+        <li class="micro">Micro / Macro</li>
+        <li class="family">Me, Family, Friends</li>
+        <li class="joy">Pure Joy</li>
+        <li class="muse">Muse / Inspo</li>
+    </ul>
+ </aside>
+
+  <aside id="viewer" class="viewer" aria-hidden="true">
+    <div class="viewer-box" role="dialog" aria-modal="true">
+      <button id="close-viewer" class="close-btn" aria-label="Close">×</button>
+      <div class="viewer-content">
+        <img id="viewer-img" alt="">
+        <div class="viewer-meta">
+          <h3 id="viewer-title">Photo</h3>
+          <p id="viewer-note">—</p>
+          <p id="viewer-date">Date: —</p>
+          <p id="viewer-gps">GPS Coordinates: —</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <script src="main.js"></script>
+</body>
+</html>
