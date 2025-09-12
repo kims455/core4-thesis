@@ -56,7 +56,7 @@ var META = {
   "abstract7": { note: "", date: "2025-02-28", gps: "40.73536° N, 73.99412° W" },
   "abstract8": { note: "", date: "2024-01-12", gps: "37.41603° N, 127.82333° E" },
   "abstract9": { note: "", date: "2025-06-02", gps: "N/A" },
-  "abstract10": { note: "", date: "2022-10-05", gps: "" },
+  "abstract10": { note: "", date: "2022-10-05", gps: "N/A" },
   "abstract11": { note: "", date: "2022-03-06", gps: "N/A" },
   "abstract12": { note: "", date: "2022-03-06", gps: "N/A" },
 
@@ -403,7 +403,7 @@ function positionLabels() {
 buildLabels();
 window.addEventListener("resize", positionLabels);
 
-var last = 0, SPEED = 0.4;
+var last = 0, SPEED = 0.25;
 function loop(t) {
   if (!last) last = t;
   var dt = (t - last) / 16.7; last = t;
