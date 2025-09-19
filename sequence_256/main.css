@@ -210,6 +210,10 @@ body.seq-mode #key {
   bottom: auto;
 }
 
+body.seq-mode #key-reset { 
+  display: none !important; 
+}
+
 @media (max-width: 640px) {
   body.seq-mode #key {
     top: 72px;
