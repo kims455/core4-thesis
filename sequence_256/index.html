@@ -6,16 +6,27 @@
   <link rel="stylesheet" href="https://use.typekit.net/rhj3kjw.css">
   <link rel="icon" href="assets/brain.png" type="image/png">
   <link rel="stylesheet" href="main.css">
-  <title>Sequence (256)</title>
+  <title>Memories in Dots</title>
 </head>
 <body>
   <header class="topbar">
-    <h1>Sequence (256)</h1>
+    <h1>Memories in Dots</h1>
     <nav class="modes" aria-label="view modes">
-      <button id="mode-neurons" class="active" aria-pressed="true">Neurons (1)</button>
-      <button id="mode-seq" aria-pressed="false">Sequence (2)</button>
+      <button id="mode-neurons" class="active" aria-pressed="true">Neurons</button>
+      <button id="mode-seq" aria-pressed="false">Sequence</button>
+      <button id="mode-statement" aria-pressed="false">Statement</button>
     </nav>
   </header>
+
+<section id="statement-page" aria-labelledby="statement-title">
+  <div class="statement-wrap">
+    <h2 id="statement-title">Artist Statement</h2>
+    <p class="main-statement">
+      This site is a sketch of thinking. Each dot hints at a neuron, each image a memory that once lit a small network inside my head.
+      The brain is noisy; meaning is what we draw over that noise.
+    </p>
+  </div>
+</section>
 
   <section id="brain-stage">
   </section>
@@ -24,16 +35,19 @@
 
   <section id="sequence-grid"></section>
 
-  <aside id="key">
+  <aside id="key" aria-label="Theme filter">
+    <!-- <p class="title">Theme filter:</p> -->
     <ul>
-        <li class="coincidence">Coincidence</li>
-        <li class="abstract">Abstract</li>
-        <li class="micro">Micro / Macro</li>
-        <li class="family">Me, Family, Friends</li>
-        <li class="joy">Pure Joy</li>
-        <li class="muse">Muse / Inspo</li>
+      <li class="coincidence">Coincidence</li>
+      <li class="abstract">Abstract</li>
+      <li class="micro">Micro / Macro</li>
+      <li class="family">Me, Family, Friends</li>
+      <li class="joy">Pure Joy</li>
+      <li class="muse">Muse / Inspo</li>
     </ul>
- </aside>
+    <!-- <p class="instruction">Click a theme to zoom. Click again or “Show all”.</p> -->
+    <button id="key-reset" class="hide">Show all</button>
+  </aside>
 
   <aside id="viewer" class="viewer" aria-hidden="true">
     <div class="viewer-box" role="dialog" aria-modal="true">
@@ -42,15 +56,15 @@
         <img id="viewer-img" alt="">
         <div class="viewer-meta">
           <h3 id="viewer-title">Photo</h3>
-          <p id="viewer-note">—</p>
-          <p id="viewer-emotion">—</p>
+          <p id="viewer-note">Note: —</p>
+          <p id="viewer-emotion">Emotion: —</p>
           <p id="viewer-date">Date: —</p>
           <p id="viewer-gps">GPS Coordinates: —</p>
         </div>
       </div>
     </div>
   </aside>
-
+  
   <script src="main.js"></script>
   
 </body>

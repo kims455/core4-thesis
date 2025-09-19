@@ -1,4 +1,8 @@
-var R_SCALE = 1.7;
+var R_SCALE = 1.75;
+
+var DOT_MIN = 23;
+var DOT_MAX = 33;
+var HITPAD  = 13;
 
 var THEMES = [
   { key: "coincidence",  color: "t-coincidence",  folder: "coincidence",  prefix: "coincidence",  count: 27 },
@@ -19,46 +23,46 @@ var FRIENDLY = {
 };
 
 var META = {
-  "coincidence1": { note: "", emotion: "Curious", date: "2025-04-04", gps: "40.73334° N, 73.99545° W" },
-  "coincidence2": { note: "", emotion: "", date: "2025-04-13", gps: "40.74879° N, 73.98904° W" },
-  "coincidence3": { note: "", emotion: "", date: "2023-04-22", gps: "40.73479° N, 73.99343° W" },
-  "coincidence4": { note: "", emotion: "", date: "2023-01-15", gps: "37.51821° N, 127.02301° E" },
-  "coincidence5": { note: "", emotion: "", date: "2017-12-24", gps: "33.41899° N, 117.62127° W" },
-  "coincidence6": { note: "", emotion: "", date: "2022-06-09", gps: "36.07698° N, 129.56967° E" },
-  "coincidence7": { note: "", emotion: "", date: "2022-08-12", gps: "37.57315° N, 126.97698° E" },
-  "coincidence8": { note: "", emotion: "", date: "2023-05-05", gps: "40.72837° N, 74.00072° W" },
-  "coincidence9": { note: "", emotion: "", date: "2025-04-30", gps: "40.74520° N, 73.98867° W" },
-  "coincidence10": { note: "", emotion: "", date: "2018-05-03", gps: "33.66093° N, 117.82845° W" },
-  "coincidence11": { note: "", emotion: "", date: "2023-05-12", gps: "40.73668° N, 73.99206° W" },
-  "coincidence12": { note: "", emotion: "", date: "2023-02-17", gps: "40.78424° N, 73.95770° W" },
-  "coincidence13": { note: "", emotion: "", date: "2018-06-16", gps: "33.66097° N, 117.82817° W" },
-  "coincidence14": { note: "", emotion: "", date: "2024-08-11", gps: "37.56209° N, 126.98156° E" },
-  "coincidence15": { note: "", emotion: "", date: "2022-06-28", gps: "36.34411° N, 129.37221° E" },
-  "coincidence16": { note: "", emotion: "", date: "2023-12-24", gps: "37.52476° N, 127.03605° E" },
-  "coincidence17": { note: "", emotion: "", date: "2024-09-13", gps: "40.71805° N, 73.95770° W" },
-  "coincidence18": { note: "", emotion: "", date: "2023-03-27", gps: "40.73542° N, 73.99410° W" },
-  "coincidence19": { note: "", emotion: "", date: "2023-03-31", gps: "40.74650° N, 73.98182° W" },
-  "coincidence20": { note: "", emotion: "", date: "2024-09-18", gps: "40.73603° N, 73.99367° W" },
-  "coincidence21": { note: "", emotion: "", date: "2023-04-06", gps: "40.73536° N, 73.99520° W" },
-  "coincidence22": { note: "", emotion: "", date: "2022-10-07", gps: "40.73539° N, 73.99354° W" },
-  "coincidence23": { note: "", emotion: "", date: "2023-09-17", gps: "40.72955° N, 73.99092° W" },
-  "coincidence24": { note: "", emotion: "", date: "2022-12-28", gps: "37.32351° N, 129.00838° E" },
-  "coincidence25": { note: "", emotion: "", date: "2023-09-20", gps: "40.72846° N, 73.99106° W" },
-  "coincidence26": { note: "", emotion: "", date: "2025-09-03", gps: "40.73843° N, 73.99236° W" },
-  "coincidence27": { note: "", emotion: "", date: "2021-04-20", gps: "37.37697° N, 127.09749° E" },
+  "coincidence1": { note: "Who left you here? Which book were you part of? What story do you have?", emotion: "Sympathy", date: "2025-04-04", gps: "40.73334° N, 73.99545° W" },
+  "coincidence2": { note: "WOAHHH!!! Double yolks in one egg!!! This made my day.", emotion: "Surprise", date: "2025-04-13", gps: "40.74879° N, 73.98904° W" },
+  "coincidence3": { note: "Looks likes an OK hand gesture. Anyway, why are you here alone?", emotion: "Curious", date: "2023-04-22", gps: "40.73479° N, 73.99343° W" },
+  "coincidence4": { note: "Pouring a chandelier into a wine glass.", emotion: "Satisfied", date: "2023-01-15", gps: "37.51821° N, 127.02301° E" },
+  "coincidence5": { note: "Three pigeons are standing on top of the sink together. Are they friends? I'm curious what they are thinking about. Also, I miss beaches in California.", emotion: "Intrigued", date: "2017-12-24", gps: "33.41899° N, 117.62127° W" },
+  "coincidence6": { note: "Two seagulls on top of the hand. They look so tiny.", emotion: "Relaxation", date: "2022-06-09", gps: "36.07698° N, 129.56967° E" },
+  "coincidence7": { note: "Reminds me of lightsabers from Star Wars. TMI: I never watched Star Wars.", emotion: "Enchantment", date: "2022-08-12", gps: "37.57315° N, 126.97698° E" },
+  "coincidence8": { note: "Another glove lies on the ground, but with all the holes and textures beneath it, it almost looks like something from the moon.", emotion: "Curious", date: "2023-05-05", gps: "40.72837° N, 74.00072° W" },
+  "coincidence9": { note: "I never thought a trash bin could be so beautiful. The sunlight streaming through the gap is unexpectedly lovely.", emotion: "Pleased", date: "2025-04-30", gps: "40.74520° N, 73.98867° W" },
+  "coincidence10": { note: "This is my room back in Irvine, CA, from my high school years. I always loved watching the light gleam through the blinds.", emotion: "Nostalgic", date: "2018-05-03", gps: "33.66093° N, 117.82845° W" },
+  "coincidence11": { note: "My iPhone camera lens seemed confused with such intense lighting from the window. I instantly captured that moment because the blue was so beautiful.", emotion: "Satisfied", date: "2023-05-12", gps: "40.73668° N, 73.99206° W" },
+  "coincidence12": { note: "Part of the exhibition at Cooper Hewitt Museum. I love sphere-shaped lighting (I also have two of them in my room), and the color combination of these lights was fascinating.", emotion: "Satisfied", date: "2023-02-17", gps: "40.78424° N, 73.95770° W" },
+  "coincidence13": { note: "A rainbow circle on the wall, created by sunlight passing through a glass. Looks like a button!", emotion: "Joy", date: "2018-06-16", gps: "33.66097° N, 117.82817° W" },
+  "coincidence14": { note: "People leave their thoughts written on the street. How many passerby will stop to read them?", emotion: "Curious", date: "2024-08-11", gps: "37.56209° N, 126.98156° E" },
+  "coincidence15": { note: "I took this photo while riding a golf cart. The crooked angle wasn’t intentional, but it makes the image look like a scene from Alice in Wonderland, as if Alice were spinning and falling into Wonderland.", emotion: "Optimistic", date: "2022-06-28", gps: "36.34411° N, 129.37221° E" },
+  "coincidence16": { note: "I love spotting positive, encouraging little things around me — like this sticker on a streetlamp in Seoul.", emotion: "Happy", date: "2023-12-24", gps: "37.52476° N, 127.03605° E" },
+  "coincidence17": { note: "I used to hate the halation from my iPhone camera, but sometimes it makes the photo look unexpectedly intriguing.", emotion: "Glad", date: "2024-09-13", gps: "40.71805° N, 73.95770° W" },
+  "coincidence18": { note: "Another sunlight reflection on the wall. This was once my Instagram profile picture. No one knew what it was because I’d zoomed in, and my friends were surprised when they finally saw the full image.", emotion: "Joy", date: "2023-03-27", gps: "40.73542° N, 73.99410° W" },
+  "coincidence19": { note: "I’ve never seen a latex glove in orange before. I found it on the stairs of a New York City subway. Why are you here? Who left you behind?", emotion: "Curious", date: "2023-03-31", gps: "40.74650° N, 73.98182° W" },
+  "coincidence20": { note: "Do you remember how many manholes you stepped on today while walking down the street? Most people probably don’t notice — but I do. I like catching the small things we usually ignore, because they can turn into something you’d never expect.", emotion: "Enthusiasm", date: "2024-09-18", gps: "40.73603° N, 73.99367° W" },
+  "coincidence21": { note: "I used to love playing with gum wrappers. One day I discovered that the aluminum side and the paper side could be separated. I carefully peeled them apart, trying to keep the original shape...and voilà! Perfectly done.", emotion: "Concentrated", date: "2023-04-06", gps: "40.73536° N, 73.99520° W" },
+  "coincidence22": { note: "During break, I looked around the classroom and spotted this astronaut-like drawing high up on the wall. Who drew it? Did they have to stand on a desk or chair to reach it?", emotion: "Curious", date: "2022-10-07", gps: "40.73539° N, 73.99354° W" },
+  "coincidence23": { note: "Laundry machines are valuable in NYC. But why is this one already broken and covered in graffiti? It looks fairly new, but I guess it’s done its job.", emotion: "Pity", date: "2023-09-17", gps: "40.72955° N, 73.99092° W" },
+  "coincidence24": { note: "Is the photo upside down? Nope. So how are the icicles standing upright? I’ve forgotten the reason… This was taken inside Hwanseongul Cave, formed about 530 million years ago.", emotion: "Amazement", date: "2022-12-28", gps: "37.32351° N, 129.00838° E" },
+  "coincidence25": { note: "Reminds me of Minions. So cute.", emotion: "Joy", date: "2023-09-20", gps: "40.72846° N, 73.99106° W" },
+  "coincidence26": { note: "I guess someone threw this mirror on the ground. The cracks and the reflection of the building make it feel surreal when I keep staring at it.", emotion: "Mesmerize", date: "2025-09-03", gps: "40.73843° N, 73.99236° W" },
+  "coincidence27": { note: "This is a piece I made back in high school art class. I spray-painted the broken pieces of a plate outside. I loved how the fence’s shadow fell across the plate, the newspaper, and the spray-paint can.", emotion: "Adventurous", date: "2021-04-20", gps: "37.37697° N, 127.09749° E" },
 
-  "abstract1": { note: "", emotion: "", date: "2024-04-04", gps: "40.74912° N, 73.98961° W" },
-  "abstract2": { note: "", emotion: "", date: "2022-11-20", gps: "40.73550° N, 73.99330° W" },
-  "abstract3": { note: "", emotion: "", date: "2024-04-28", gps: "40.76285° N, 73.97355° W" },
-  "abstract4": { note: "", emotion: "", date: "2022-04-22", gps: "40.73954° N, 74.00905° W" },
-  "abstract5": { note: "", emotion: "", date: "2019-07-02", gps: "N/A" },
-  "abstract6": { note: "", emotion: "", date: "2025-05-10", gps: "40.75333° N, 74.00236° W" },
-  "abstract7": { note: "", emotion: "", date: "2025-02-28", gps: "40.73536° N, 73.99412° W" },
-  "abstract8": { note: "", emotion: "", date: "2024-01-12", gps: "37.41603° N, 127.82333° E" },
-  "abstract9": { note: "", emotion: "", date: "2025-06-02", gps: "N/A" },
-  "abstract10": { note: "", emotion: "", date: "2022-10-05", gps: "N/A" },
-  "abstract11": { note: "", emotion: "", date: "2022-03-06", gps: "N/A" },
-  "abstract12": { note: "", emotion: "", date: "2022-03-06", gps: "N/A" },
+  "abstract1": { note: "I love using the camera as my eyes. Guess what this is... It's the bottom side of a plastic water bottle!", emotion: "Curiosity", date: "2024-04-04", gps: "40.74912° N, 73.98961° W" },
+  "abstract2": { note: "Whenever I feel depressed, I express my feelings with watercolor.", emotion: "Melancholy", date: "2022-11-20", gps: "40.73550° N, 73.99330° W" },
+  "abstract3": { note: "I saw this at Tiffany store in 5th Avenue. It looks like an egg, a tunnel, an eyeball of a dinosaur, a pill, a planet... and more.", emotion: "Daze", date: "2024-04-28", gps: "40.76285° N, 73.97355° W" },
+  "abstract4": { note: "Took this photo at Whitney Museum. Jay DeFeo's 'The Rose' (1958-1966), one of my favorite artworks in NYC.", emotion: "Wonder", date: "2022-04-22", gps: "40.73954° N, 74.00905° W" },
+  "abstract5": { note: "When I showed this photo to my friends, none of them could guess what it was — it’s actually a Bluetooth speaker glowing in the dark with the room lights off.", emotion: "Playful", date: "2019-07-02", gps: "N/A" },
+  "abstract6": { note: "I want to have this sculpture on my bookshelf. Blue and yellow are my favorite colors.", emotion: "Possessive", date: "2025-05-10", gps: "40.75333° N, 74.00236° W" },
+  "abstract7": { note: "Took this photo on my way home after class. I flipped it and it looked like a mountain.", emotion: "Amusement", date: "2025-02-28", gps: "40.73536° N, 73.99412° W" },
+  "abstract8": { note: "Tadao Ando's work at Museum San, South Korea. I could stare at this architecture for whole day.", emotion: "Comfort", date: "2024-01-12", gps: "37.41603° N, 127.82333° E" },
+  "abstract9": { note: "I saw James Turrell's work at Museum San. It's prohibited to take a photo during his exhibition experience, so I brought this image from a museum. Honestly, I wanted to live inside his work because it was such a fascinating experience.", emotion: "Ecstasy", date: "2025-06-02", gps: "N/A" },
+  "abstract10": { note: "Another piece of watercolor I did when I felt lost and trapped.", emotion: "Heartache", date: "2022-10-05", gps: "N/A" },
+  "abstract11": { note: "One of the works I created during my first year at Parsons. I always loved mimicking photos to create another world with my perspective. My professor loved my photo series.", emotion: "Enthusiasm", date: "2022-03-06", gps: "N/A" },
+  "abstract12": { note: "Another version of the work during first year. See? There are lots of ways to create something unexpected with a photo.", emotion: "Enthusiasm", date: "2022-03-06", gps: "N/A" },
 
   "micro-macro1": { note: "", emotion: "", date: "2025-05-10", gps: "40.75349° N, 74.00269° W" },
   "micro-macro2": { note: "", emotion: "", date: "2023-10-07", gps: "40.78320° N, 73.95877° W" },
@@ -93,28 +97,28 @@ var META = {
   "micro-macro31": { note: "", emotion: "", date: "2021-05-07", gps: "37.37787° N, 127.09751° E" },
   "micro-macro32": { note: "", emotion: "", date: "2025-01-29", gps: "40.73294° N, 74.00706° W" },
 
-  "me-fam-frnds1": { note: "", emotion: "", date: "2024-09-24", gps: "N/A" },
-  "me-fam-frnds2": { note: "", emotion: "", date: "2023-06-08", gps: "N/A" },
-  "me-fam-frnds3": { note: "", emotion: "", date: "2023-07-28", gps: "37.52314° N, 127.03619° E" },
-  "me-fam-frnds4": { note: "", emotion: "", date: "2018-06-17", gps: "33.54148° N, 117.78458° W" },
-  "me-fam-frnds5": { note: "", emotion: "", date: "2018-06-17", gps: "33.54148° N, 117.78458° W" },
-  "me-fam-frnds6": { note: "", emotion: "", date: "2020-12-20", gps: "N/A" },
-  "me-fam-frnds7": { note: "", emotion: "", emotion: "", date: "2020-12-20", gps: "N/A" },
-  "me-fam-frnds8": { note: "", emotion: "", date: "2018-08-31", gps: "N/A" },
-  "me-fam-frnds9": { note: "", emotion: "", date: "2018-06-13", gps: "37.72055° N, 119.64855° W" },
-  "me-fam-frnds10": { note: "", emotion: "", date: "2014-10-11", gps: "33.63225° N, 117.83581° W" },
-  "me-fam-frnds11": { note: "", emotion: "", date: "2015-10-11", gps: "N/A" },
-  "me-fam-frnds12": { note: "", emotion: "", date: "2021-09-14", gps: "N/A" },
-  "me-fam-frnds13": { note: "", emotion: "", date: "2021-09-14", gps: "N/A" },
-  "me-fam-frnds14": { note: "", emotion: "", date: "2023-07-28", gps: "37.52314° N, 127.03619° E" },
-  "me-fam-frnds15": { note: "", emotion: "", date: "2025-08-10", gps: "37.21568° N, 127.14342° E" },
-  "me-fam-frnds16": { note: "", emotion: "", date: "2017-09-04", gps: "33.66082° N, 117.82850° W" },
-  "me-fam-frnds17": { note: "", emotion: "", date: "2023-08-09", gps: "37.53493° N, 126.98716° E" },
-  "me-fam-frnds18": { note: "", emotion: "", date: "2025-04-30", gps: "40.76311° N, 73.97537° W" },
-  "me-fam-frnds19": { note: "", emotion: "", date: "2019-03-22", gps: "37.37805° N, 127.09799° E" },
-  "me-fam-frnds20": { note: "", emotion: "", date: "2025-06-19", gps: "37.54613° N, 127.03954° E" },
-  "me-fam-frnds21": { note: "", emotion: "", date: "2022-10-06", gps: "N/A" },
-  "me-fam-frnds22": { note: "", emotion: "", date: "2025-01-11", gps: "37.54630° N, 127.04928° E" },
+  "me-fam-frnds1": { note: "This is Harry! He’s a six-year-old Maltese, named after my dad’s first dog from his college days. We call him Harry the Second (like Henry VIII). I love him more than I love myself, and I miss him so much.", emotion: "Love, adore, thankful", date: "2024-09-24", gps: "N/A" },
+  "me-fam-frnds2": { note: "This is a photo of me when I was about three or four years old, one of my earliest memories. Our family was visiting my grandfather’s vacation house in Bali, Indonesia. I was drinking water through a straw after playing with my sister and cousins, and my mom captured that moment.", emotion: "Nostalgic", date: "2023-06-08", gps: "N/A" },
+  "me-fam-frnds3": { note: "My dad loves playing golf, and we’re always amazed at how tanned he gets from it. I once asked everyone to put their arms on the table to compare skin tones. From left to right: mom, me, dad, and older sister.", emotion: "Happy", date: "2023-07-28", gps: "37.52314° N, 127.03619° E" },
+  "me-fam-frnds4": { note: "Took the photo at Laguna Beach, CA. Feet of dad, older sister, and me.", emotion: "Happy", date: "2018-06-17", gps: "33.54148° N, 117.78458° W" },
+  "me-fam-frnds5": { note: "My mom took this photo of the three of us at Laguna Beach, CA. It's one of the core memories of my life.", emotion: "Nostalgic", date: "2018-06-17", gps: "33.54148° N, 117.78458° W" },
+  "me-fam-frnds6": { note: "A polaroid photo by my mom. I got this Belle dress at Disneyland in California after begging my mom for hours. I wore it to my birthday pool party. Look how happy I am in the photo!", emotion: "Overjoyed", date: "2020-12-20", gps: "N/A" },
+  "me-fam-frnds7": { note: "This is me before I was born. If you look closely, you can see my tiny arm raised in the middle. It feels strange yet fills me with gratitude every time I see this photo. It’s hard to believe how tiny I once was and how much my mom sacrificed for me and my older sister. Thank you, Mom. I love you.", emotion: "Subtle", emotion: "", date: "2020-12-20", gps: "N/A" },
+  "me-fam-frnds8": { note: "Congratulations to Stella, my older sister! These are the gifts she gave me after her first week at NYU. When she was accepted, I started dreaming about going to college in New York so I could stay close to her and live together in the city. And that dream came true!", emotion: "Delightful", date: "2018-08-31", gps: "N/A" },
+  "me-fam-frnds9": { note: "Family trip to Yosemite National Park before moving back to South Korea. Shot by my dad.", emotion: "Serenity", date: "2018-06-13", gps: "37.72055° N, 119.64855° W" },
+  "me-fam-frnds10": { note: "Our very first dog, Haeng-Bok (which means happy in Korean), was adopted by one of our grandfathers. We loved her so much. Sadly, she was taken by a stranger when our housekeeper opened the door to air out the house. We spent weeks searching for her with missing dog flyers but never found her. I still tear up when I look at this photo. I remember how calm, elegant, and kind she was.", emotion: "Sorrow, heartache, grief...can't describe with words", date: "2014-10-11", gps: "33.63225° N, 117.83581° W" },
+  "me-fam-frnds11": { note: "This was the first time I held a real golf club (other than a toy one). I always followed my dad and grandfather to the driving range, sitting on the sofa with snacks while watching them practice. The owner of the range thought I was getting bored, so she brought me a kid-sized club, and I finally got to practice on my own.", emotion: "Thrill", date: "2015-10-11", gps: "N/A" },
+  "me-fam-frnds12": { note: "A photo of my mom in her twenties, taken in California while she was studying at UCLA. She brought us back here when we were kids and said it felt strange to return with us.", emotion: "Nostalgic", date: "2021-09-14", gps: "N/A" },
+  "me-fam-frnds13": { note: "Another photo of my mom in her twenties. We loved watching the geese (or ducks) on the grass in California.", emotion: "Nostalgic", date: "2021-09-14", gps: "N/A" },
+  "me-fam-frnds14": { note: "We went to a dessert shop in Seoul that had the cutest heart-shaped spoons, so I asked my family to gather so we could take a photo of all four hearts together.", emotion: "Warmth", date: "2023-07-28", gps: "37.52314° N, 127.03619° E" },
+  "me-fam-frnds15": { note: "This is the putter my grandfather used when he was 29. He gave it to me as a gift, and I love feeling the passage of time whenever I use it. My mom took this photo while I was concentrating on putting the ball.", emotion: "Sentimentality", date: "2025-08-10", gps: "37.21568° N, 127.14342° E" },
+  "me-fam-frnds16": { note: "I don’t remember what we were talking about, but I loved that moment when my sister and I just laughed together about random things and draw things on post it notes. I feel so deeply attached to her. She means a lot to me, and she’s the one who always makes me laugh.", emotion: "Love", date: "2017-09-04", gps: "33.66082° N, 117.82850° W" },
+  "me-fam-frnds17": { note: "My very first drive in my mom’s car! I handwrote a “Novice Driver” sign in Korean and attached it to the back of the car, just to make it clear how new I was at this.", emotion: "Nervous", date: "2023-08-09", gps: "37.53493° N, 126.98716° E" },
+  "me-fam-frnds18": { note: "My high school friend from California visited NYC with two of her friends. Another high school friend (who studies at Parsons) and I got there early to pick the menu, which was hard because I was starving. Anyway, it was so nice meeting both old and new friends. We talked all day until we needed throat candies!", emotion: "Joy", date: "2025-04-30", gps: "40.76311° N, 73.97537° W" },
+  "me-fam-frnds19": { note: "This is me and my high school friend (also went to Parsons) jumping in the middle of our school’s soccer field. Who would have thought we’d both end up in NYC?", emotion: "Freedom", date: "2019-03-22", gps: "37.37805° N, 127.09799° E" },
+  "me-fam-frnds20": { note: "I used to be scared of riding bicycles. My dad taught me well when I was in 2nd grade, but I was too timid, so I didn’t ride for years. Then, this summer in Seoul, I started riding an electric bike and it was absolutely thrilling. After that, I began riding bicycles all over the riverside paths, bridges, and forests in Seoul.", emotion: "Excitement, freedom", date: "2025-06-19", gps: "37.54613° N, 127.03954° E" },
+  "me-fam-frnds21": { note: "One of my favorite portraits I created at Parsons. It was originally made for a film called 'Delirium' but I later edited it to make it feel more surreal and uncanny. It also reflects my feelings of loneliness and confusion.", emotion: "Isolated", date: "2022-10-06", gps: "N/A" },
+  "me-fam-frnds22": { note: "Went to the restuarant I wanted to go with my oldest friend. We were friends since 1st grade.", emotion: "Excited", date: "2025-01-11", gps: "37.54630° N, 127.04928° E" },
   "me-fam-frnds23": { note: "", emotion: "", date: "2017-08-18", gps: "N/A" },
   "me-fam-frnds24": { note: "", emotion: "", date: "2018-04-20", gps: "33.65685° N, 117.82484° W" },
   "me-fam-frnds25": { note: "", emotion: "", date: "2021-05-20", gps: "37.37810° N, 127.09795° E" },
@@ -123,7 +127,7 @@ var META = {
   "me-fam-frnds28": { note: "", emotion: "", date: "2016-06-03", gps: "33.62485° N, 117.82633° W" },
   "me-fam-frnds29": { note: "", emotion: "", date: "2025-08-12", gps: "37.54392° N, 126.92712° E" },
   "me-fam-frnds30": { note: "", emotion: "", date: "2023-12-02", gps: "40.74876° N, 73.98731° W" },
-  "me-fam-frnds31": { note: "", date: "2018-05-18", gps: "33.64942° N, 117.76983° W" },
+  "me-fam-frnds31": { note: "", emotion: "", date: "2018-05-18", gps: "33.64942° N, 117.76983° W" },
   "me-fam-frnds32": { note: "", emotion: "", date: "2018-06-06", gps: "33.69086° N, 117.88752° W" },
   "me-fam-frnds33": { note: "", emotion: "", date: "2022-08-06", gps: "37.49076° N, 127.05499° E" },
   "me-fam-frnds34": { note: "", emotion: "", date: "2019-06-07", gps: "N/A" },
@@ -146,7 +150,7 @@ var META = {
   "pure-joy14": { note: "", emotion: "", date: "2016-06-03", gps: "33.62485° N, 117.82633° W" },
   "pure-joy15": { note: "", emotion: "", date: "2024-07-26", gps: "37.56565° N, 126.93826° E" },
   "pure-joy16": { note: "", emotion: "", date: "2018-04-04", gps: "34.05440° N, 118.25053° W" },
-  "pure-joy17": { note: "", date: "2017-07-16", gps: "40.72377° N, 73.99649° W" },
+  "pure-joy17": { note: "", emotion: "", date: "2017-07-16", gps: "40.72377° N, 73.99649° W" },
   "pure-joy18": { note: "I will be looking from this pov when I graduate", emotion: "Thrill", date: "2023-11-07", gps: "40.73558° N, 73.99388° W" },
   "pure-joy19": { note: "", emotion: "", date: "2019-03-15", gps: "N/A" },
   "pure-joy20": { note: "", emotion: "", date: "2021-05-20", gps: "37.53455° N, 126.99488° E" },
@@ -287,11 +291,9 @@ function makeAll() {
   for (var t = 0; t < THEMES.length; t++) {
     var theme = THEMES[t];
     for (var i = 1; i <= theme.count; i++) {
-      var key = theme.prefix + i;
       list.push({
-        key: key,
+        key: theme.prefix + i,
         theme: theme.key,
-        color: theme.color,
         src: "assets/" + theme.folder + "/" + theme.prefix + i + ".jpg"
       });
     }
@@ -316,11 +318,15 @@ function placeInCircle(c) {
   var r  = c.r * R_SCALE * Math.min(sw, sh);
   var th = Math.random() * Math.PI * 2;
   var rad = Math.sqrt(Math.random()) * r;
-  return { x: cx + rad * Math.cos(th), y: cy + rad * Math.sin(th), cx: cx, cy: cy, r: r };
+  return { x: cx + rad * Math.cos(th), y: cy + rad * Math.sin(th) };
+}
+function getThemeIndex(themeKey) {
+  for (var i = 0; i < THEMES.length; i++) if (THEMES[i].key === themeKey) return i;
+  return 0;
 }
 
-var stage     = document.getElementById("brain-stage");
-var seqGrid   = document.getElementById("sequence-grid");
+var stage   = document.getElementById("brain-stage");
+var seqGrid = document.getElementById("sequence-grid");
 var labelsBox = document.getElementById("labels");
 
 var viewer = document.getElementById("viewer");
@@ -332,19 +338,53 @@ var vEmotion = document.getElementById("viewer-emotion");
 var vDate = document.getElementById("viewer-date");
 var vGPS  = document.getElementById("viewer-gps");
 
-var dots = [];
+// Seen dots
+const SEEN_KEY = 'brain_seen_v1';
 
-function getThemeIndex(themeKey) {
-  for (var i = 0; i < THEMES.length; i++) if (THEMES[i].key === themeKey) return i;
-  return 0;
+try { localStorage.removeItem(SEEN_KEY); } catch (e) {}
+
+function loadSeen(){
+  try{
+    var arr = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]');
+    var set = new Set(Array.isArray(arr) ? arr.filter(x => typeof x === 'string') : []);
+    if (ALL.length && set.size >= ALL.length * 0.9) return new Set();
+    return set;
+  }catch(e){ return new Set(); }
 }
 
+var seenSet = loadSeen();
+
+function saveSeen(){
+  localStorage.setItem(SEEN_KEY, JSON.stringify([...seenSet]));
+}
+
+function applySeenStyles(){
+  dots.forEach(d => d.el.classList.toggle('seen', seenSet.has(d.info.key)));
+  document.querySelectorAll('#sequence-grid .item').forEach(it => {
+    var key = it.getAttribute('data-key');
+    if (key) it.classList.toggle('seen', seenSet.has(key));
+  });
+}
+
+function markSeen(key){
+  if (!seenSet.has(key)) {
+    seenSet.add(key);
+    saveSeen();
+    applySeenStyles();
+  }
+}
+
+// Dots
+var dots = [];
+var dotByKey = Object.create(null);
 function makeDot(info, areaIndex) {
-  var base = Math.random() * 6 + 10;
+  var base = Math.random() * (DOT_MAX - DOT_MIN) + DOT_MIN;
+
   var el = document.createElement("div");
   el.className = "dot " + THEMES[areaIndex].color;
   el.style.width = base + "px";
   el.style.height = base + "px";
+  el.style.padding = HITPAD + "px";
   el.style.backgroundImage = "url(" + info.src + ")";
   el.style.animationDuration = (Math.random() * 2 + 4).toFixed(2) + "s";
   el.style.animationDelay    = (Math.random() * 3).toFixed(2) + "s";
@@ -355,25 +395,207 @@ function makeDot(info, areaIndex) {
   el.style.top  = y + "px";
 
   var vx = rand(-0.06, 0.06), vy = rand(-0.06, 0.06);
-  el.addEventListener("click", function(){ openViewer(info); });
+
+  el.addEventListener("click", function(){ openViewer(info); markSeen(info.key); });
+
+  var d = { el: el, x: x, y: y, vx: vx, vy: vy, w: base, h: base, pad: HITPAD, areaIndex: areaIndex, info: info, frozen:false };
+  el.addEventListener("mouseenter", function(){ d.frozen = true; el.style.animationPlayState = 'paused'; });
+  el.addEventListener("mouseleave", function(){
+    d.frozen = false;
+    d.vx = rand(-0.03, 0.03);
+    d.vy = rand(-0.03, 0.03);
+    el.style.animationPlayState = 'running';
+  });
+
   stage.appendChild(el);
-
-  return { el: el, x: x, y: y, vx: vx, vy: vy, w: base, h: base, areaIndex: areaIndex, info: info };
+  return d;
 }
-
-function clearDots() {
-  var olds = stage.querySelectorAll(".dot");
-  for (var i = 0; i < olds.length; i++) if (olds[i].parentNode) olds[i].parentNode.removeChild(olds[i]);
-}
-
-function buildDots() {
+function clearDots(){ stage.querySelectorAll(".dot").forEach(n => n.remove()); }
+function buildDots(){
   clearDots(); dots.length = 0;
+  dotByKey = Object.create(null);
   for (var i = 0; i < ALL.length; i++) {
     var info = ALL[i], idx = getThemeIndex(info.theme);
-    dots.push(makeDot(info, idx));
+    var d = makeDot(info, idx);
+    dots.push(d);
+    dotByKey[info.key] = d;
   }
+  applySeenStyles();
 }
 buildDots();
+
+// Connecting lines
+var linkSVG = null;
+var connections = [];
+
+function initLinkLayer(){
+  if (linkSVG) return;
+  linkSVG = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  linkSVG.classList.add('link-layer');
+  linkSVG.setAttribute('width','100%');
+  linkSVG.setAttribute('height','100%');
+  linkSVG.setAttribute('viewBox','0 0 ' + window.innerWidth + ' ' + window.innerHeight);
+
+  linkSVG.style.position = 'absolute';
+  linkSVG.style.inset = '0';
+  linkSVG.style.pointerEvents = 'none';
+  linkSVG.style.zIndex = '2';
+  stage.appendChild(linkSVG);
+}
+
+function connect(aKey, bKey, opts){
+  initLinkLayer();
+  var line = document.createElementNS('http://www.w3.org/2000/svg','line');
+  line.setAttribute('class','link-line');
+  line.setAttribute('stroke', (opts && opts.color) || 'rgba(255,255,255,.6)');
+  line.setAttribute('stroke-width', (opts && opts.width) || 2);
+  if (opts && opts.dash) line.setAttribute('stroke-dasharray', opts.dash);
+  linkSVG.appendChild(line);
+  connections.push({ aKey:aKey, bKey:bKey, line:line, opts:opts||{} });
+}
+
+function clearConnections(){
+  connections.forEach(c => c.line && c.line.remove());
+  connections.length = 0;
+}
+
+function centerOf(d){
+  var w = d.el.offsetWidth;
+  var h = d.el.offsetHeight;
+  return { x: d.x + w/2, y: d.y + h/2 };
+}
+
+function updateConnections(){
+  if (!connections.length || !linkSVG) return;
+
+  linkSVG.setAttribute('viewBox','0 0 ' + window.innerWidth + ' ' + window.innerHeight);
+  for (var i=0;i<connections.length;i++){
+    var c = connections[i];
+    var a = dotByKey[c.aKey];
+    var b = dotByKey[c.bKey];
+    if (!a || !b){
+      c.line.setAttribute('opacity','0');
+      continue;
+    }
+    var pa = centerOf(a), pb = centerOf(b);
+    c.line.setAttribute('x1', pa.x);
+    c.line.setAttribute('y1', pa.y);
+    c.line.setAttribute('x2', pb.x);
+    c.line.setAttribute('y2', pb.y);
+
+    var hidden = a.el.classList.contains('hidden') || b.el.classList.contains('hidden');
+    c.line.setAttribute('opacity', hidden ? (c.opts.hiddenOpacity || 0.18) : (c.opts.opacity || 0.8));
+  }
+}
+
+window.addEventListener('resize', function(){
+  if (linkSVG) linkSVG.setAttribute('viewBox','0 0 ' + window.innerWidth + ' ' + window.innerHeight);
+});
+
+var THEME_KEY_MAP = {
+  coincidence: 'coincidence',
+  abstract: 'abstract',
+  micro: 'micro-macro',
+  family: 'me-fam-frnds',
+  joy: 'pure-joy',
+  muse: 'muse-inspo'
+};
+var currentFocus = null;
+var ZOOM = 2.2;
+var keyEl = document.getElementById('key');
+var resetBtn = document.getElementById('key-reset');
+
+var isNeuronsMode = true;
+
+function getThemeCenter(themeKey){
+  var sx = 0, sy = 0, n = 0;
+  for (var i = 0; i < dots.length; i++){
+    var d = dots[i];
+    if (d.info.theme !== themeKey) continue;
+    var cx = d.x + (d.w + (d.pad || 0)*2) * 0.5;
+    var cy = d.y + (d.h + (d.pad || 0)*2) * 0.5;
+    sx += cx; sy += cy; n++;
+  }
+  if (n) return { x: sx/n, y: sy/n };
+  var idx = getThemeIndex(themeKey);
+  var c = CIRCLES[idx];
+  return { x: c.cx * window.innerWidth, y: c.cy * window.innerHeight };
+}
+
+// apply zoom (Neurons)
+function applyFocus() {
+  if (!isNeuronsMode) return;
+  stage.style.transformOrigin = '0 0';
+  if (!currentFocus) { stage.style.transform = 'translate(0,0) scale(1)'; return; }
+  var p = getThemeCenter(currentFocus);
+  var s = ZOOM, ww = window.innerWidth, wh = window.innerHeight;
+  var dx = (ww * 0.5) - (p.x * s);
+  var dy = (wh * 0.5) - (p.y * s);
+  stage.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + s + ')';
+}
+
+// filter grid (Sequence)
+function filterSequenceGrid(themeKey){
+  var items = seqGrid.querySelectorAll('.item');
+  if (!items.length) return;
+  var showAll = !themeKey;
+  items.forEach(function(it){
+    var t = it.getAttribute('data-theme');
+    it.style.display = (showAll || t === themeKey) ? '' : 'none';
+  });
+  if (!showAll) seqGrid.scrollTop = 0;
+}
+
+function clearFocus() {
+  currentFocus = null;
+
+  stage.style.transformOrigin = '0 0';
+  stage.style.transform = 'translate(0,0) scale(1)';
+  dots.forEach(d => d.el.classList.remove('big','hidden'));
+
+  filterSequenceGrid(null);
+
+  if (keyEl) keyEl.querySelectorAll('li').forEach(li => li.classList.remove('active'));
+  if (resetBtn) resetBtn.classList.add('hide');
+}
+
+function focusTheme(themeKey) {
+  if (currentFocus === themeKey) { clearFocus(); return; }
+  currentFocus = themeKey;
+
+  if (keyEl) {
+    keyEl.querySelectorAll('li').forEach(function(li){
+      var t = THEME_KEY_MAP[li.classList[0]];
+      li.classList.toggle('active', t === themeKey);
+    });
+  }
+  if (resetBtn) resetBtn.classList.remove('hide');
+
+  if (isNeuronsMode) {
+    dots.forEach(function(d){
+      var match = (d.info.theme === themeKey);
+      d.el.classList.toggle('big', match);
+      d.el.classList.toggle('hidden', !match);
+    });
+    applyFocus();
+  } else {
+    filterSequenceGrid(themeKey);
+  }
+}
+
+if (keyEl) {
+  keyEl.querySelectorAll('li').forEach(function(li){
+    li.addEventListener('click', function(e){
+      e.stopPropagation();
+      var theme = THEME_KEY_MAP[this.classList[0]];
+      if (theme) focusTheme(theme);
+    });
+  });
+}
+if (resetBtn) resetBtn.addEventListener('click', function(e){ e.stopPropagation(); clearFocus(); });
+stage.addEventListener('click', function(e){ if (e.target === stage) clearFocus(); });
+window.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !viewer.classList.contains('open')) clearFocus(); });
+window.addEventListener('resize', function(){ if (isNeuronsMode) applyFocus(); });
 
 var labelEls = [];
 function buildLabels() {
@@ -389,11 +611,10 @@ function buildLabels() {
 function positionLabels() {
   var sw = window.innerWidth, sh = window.innerHeight;
   for (var i = 0; i < labelEls.length; i++) {
-    var el = labelEls[i], c = CIRCLES[i];
-    el.style.left = (c.cx * sw) + "px";
-    el.style.top  = (c.cy * sh) + "px";
-    el.style.pointerEvents = "auto"; el.style.cursor = "pointer";
     (function (index) {
+      var el = labelEls[index], c = CIRCLES[index];
+      el.style.left = (c.cx * sw) + "px";
+      el.style.top  = (c.cy * sh) + "px";
       el.onclick = function () {
         for (var k = 0; k < dots.length; k++) dots[k].el.style.opacity = (dots[k].areaIndex === index) ? "1" : "0.18";
         setTimeout(function(){ for (var k2 = 0; k2 < dots.length; k2++) dots[k2].el.style.opacity = ""; }, 2500);
@@ -404,7 +625,9 @@ function positionLabels() {
 buildLabels();
 window.addEventListener("resize", positionLabels);
 
-var last = 0, SPEED = 0.2;
+
+// Animation
+var last = 0, SPEED = 0.18;
 function loop(t) {
   if (!last) last = t;
   var dt = (t - last) / 16.7; last = t;
@@ -412,11 +635,15 @@ function loop(t) {
 
   for (var i = 0; i < dots.length; i++) {
     var d = dots[i];
+    if (d.frozen) { d.el.style.left = d.x + "px"; d.el.style.top  = d.y + "px"; continue; }
+
     d.x += d.vx * dt * SPEED; d.y += d.vy * dt * SPEED;
 
     var c = CIRCLES[d.areaIndex];
     var cx = c.cx * sw, cy = c.cy * sh, R = c.r * R_SCALE * Math.min(sw, sh);
-    var rx = d.w * 0.5, ry = d.h * 0.5, pr = (rx > ry ? rx : ry);
+    var rx = (d.w + (d.pad || 0) * 2) * 0.5;
+    var ry = (d.h + (d.pad || 0) * 2) * 0.5;
+    var pr = Math.max(rx, ry);
     var px = d.x + rx, py = d.y + ry;
     var dx = px - cx, dy = py - cy, dist = Math.sqrt(dx*dx + dy*dy);
     var maxDist = Math.max(0.0001, R - pr);
@@ -439,18 +666,56 @@ function loop(t) {
     d.el.style.left = d.x + "px";
     d.el.style.top  = d.y + "px";
   }
+
+  updateConnections();
+
   window.requestAnimationFrame(loop);
 }
 window.requestAnimationFrame(loop);
 
+buildDots();
+
+connect('me-fam-frnds11', 'me-fam-frnds15', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('pure-joy6', 'me-fam-frnds5', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('me-fam-frnds17', 'pure-joy52', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('me-fam-frnds8', 'pure-joy27', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('coincidence21', 'pure-joy47', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('coincidence27', 'me-fam-frnds35', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('muse-inspo24', 'pure-joy11', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('me-fam-frnds25', 'pure-joy36', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('muse-inspo51', 'pure-joy21', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('micro-macro25', 'pure-joy35', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('muse-inspo52', 'coincidence11', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('pure-joy20', 'coincidence36', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('micro-macro4', 'pure-joy16', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('me-fam-frnds24', 'pure-joy37', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('me-fam-frnds22', 'pure-joy49', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('me-fam-frnds28', 'pure-joy14', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('abstract5', 'pure-joy38', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('coincidence9', 'muse-inspo55', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('coincidence25', 'micro-macro19', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('abstract1', 'micro-macro19', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('micro-macro32', 'pure-joy33', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('coincidence10', 'pure-joy50', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('pure-joy24', 'pure-joy63', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('coincidence20', 'pure-joy35', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('muse-inspo44', 'coincidence26', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('abstract2', 'muse-inspo42', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('muse-inspo54', 'pure-joy64', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('abstract7', 'me-fam-frnds9', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('pure-joy29', 'pure-joy49', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('me-fam-frnds20', 'pure-joy39', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+connect('coincidence23', 'pure-joy43', {color:'#a2a2a2ff', width:0.8, dash:'4,6'});
+
+// Viewer window
 function openViewer(info){
-  var m = META[info.key] || {};
+  var m = (typeof META !== 'undefined' ? META[info.key] : null) || {};
   vImg.src = info.src;
   vTit.textContent = info.key;
-  vNote.textContent = m.note || "—";
+  vNote.textContent = "Note: " + (m.note || "—");
   vEmotion.textContent = "Emotion: " + (m.emotion || "—");
   vDate.textContent = "Date: " + (m.date || "—");
-  vGPS.textContent  = "GPS Coordinates: "  + (m.gps  || "—");
+  vGPS.textContent  = "GPS Coordinates: " + (m.gps || "—");
   viewer.classList.add("open");
   viewer.setAttribute("aria-hidden", "false");
 }
@@ -463,36 +728,70 @@ closeBtn.addEventListener("click", closeViewer);
 viewer.addEventListener("click", function(e){ if(e.target === viewer) closeViewer(); });
 window.addEventListener("keydown", function(e){ if(e.key === "Escape") closeViewer(); });
 
+// Sequence grid
 function buildSequence(){
   seqGrid.innerHTML = "";
   var sorted = ALL.slice(0).sort(function(a,b){ return a.key.localeCompare(b.key, undefined, {numeric:true}); });
   for (var i = 0; i < sorted.length; i++) {
-    var info = sorted[i], it = document.createElement("div");
-    it.className = "item";
-    it.style.backgroundImage = "url(" + info.src + ")";
-    it.title = info.key;
-    (function(infoRef){ it.addEventListener("click", function(){ openViewer(infoRef); }); })(info);
-    seqGrid.appendChild(it);
+    (function(info){
+      var it = document.createElement("div");
+      it.className = "item";
+      it.setAttribute('data-key', info.key);
+      it.setAttribute('data-theme', info.theme);
+      it.style.backgroundImage = "url(" + info.src + ")";
+      it.title = info.key;
+      it.addEventListener("click", function(){ openViewer(info); markSeen(info.key); });
+      seqGrid.appendChild(it);
+    })(sorted[i]);
   }
+  applySeenStyles();
 }
 buildSequence();
 
-var btnNeurons = document.getElementById("mode-neurons");
-var btnSeq   = document.getElementById("mode-seq");
-function setMode(mode){
-  var neurons = (mode === "neurons");
-  if (neurons) {
-    btnNeurons.classList.add("active"); btnNeurons.setAttribute("aria-pressed","true");
-    btnSeq.classList.remove("active"); btnSeq.setAttribute("aria-pressed","false");
-  } else {
-    btnSeq.classList.add("active"); btnSeq.setAttribute("aria-pressed","true");
-    btnNeurons.classList.remove("active"); btnNeurons.setAttribute("aria-pressed","false");
-  }
-  document.getElementById("brain-stage").style.display = neurons ? "block" : "none";
-  document.getElementById("sequence-grid").style.display = neurons ? "none" : "block";
-}
-btnNeurons.addEventListener("click", function(){ setMode("neurons"); });
-btnSeq  .addEventListener("click", function(){ setMode("seq");   });
-window.addEventListener("keydown", function(e){ if(e.key==="1") setMode("neurons"); if(e.key==="2") setMode("seq"); });
-setMode("neurons");
+// Mode switching (Neurons, Sequence, Statement)
+var btnNeurons     = document.getElementById("mode-neurons");
+var btnSeq         = document.getElementById("mode-seq");
+var btnStatements  = document.getElementById("mode-statement");
+var brainStage     = document.getElementById("brain-stage");
+var sequenceGrid   = document.getElementById("sequence-grid");
+var statementPage = document.getElementById("statement-page");
 
+var isNeuronsMode = true;
+
+function setMode(mode){
+  if (typeof clearFocus === "function") clearFocus();
+
+  var neurons    = (mode === "neurons");
+  var sequence   = (mode === "seq");
+  var statement = (mode === "statement");
+
+  isNeuronsMode = neurons;
+
+  document.body.classList.toggle("neurons-mode",    neurons);
+  document.body.classList.toggle("seq-mode",        sequence);
+  document.body.classList.toggle("statement-mode", statement);
+
+  if (btnNeurons){    btnNeurons.classList.toggle("active", neurons);    btnNeurons.setAttribute("aria-pressed", neurons ? "true" : "false"); }
+  if (btnSeq){        btnSeq.classList.toggle("active", sequence);       btnSeq.setAttribute("aria-pressed", sequence ? "true" : "false"); }
+  if (btnStatements){ btnStatements.classList.toggle("active", statement); btnStatements.setAttribute("aria-pressed", statement ? "true" : "false"); }
+
+  if (brainStage)     brainStage.style.display     = neurons    ? "block" : "none";
+  if (sequenceGrid)   sequenceGrid.style.display   = sequence   ? "block" : "none";
+  if (statementPage) statementPage.style.display = statement ? "block" : "none";
+
+  if (sequence && typeof filterSequenceGrid === "function") {
+    filterSequenceGrid(currentFocus);
+  }
+}
+
+if (btnNeurons)    btnNeurons.addEventListener("click", () => setMode("neurons"));
+if (btnSeq)        btnSeq.addEventListener("click",     () => setMode("seq"));
+if (btnStatements) btnStatements.addEventListener("click", () => setMode("statement"));
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "1") setMode("neurons");
+  if (e.key === "2") setMode("seq");
+  if (e.key === "3") setMode("statement");
+});
+
+setMode("neurons");
