@@ -129,8 +129,8 @@ h1 {
 
 #key {
   position:fixed;
-  left:11px;
-  bottom:16px;
+  left:10px;
+  bottom:14px;
   z-index:9;
   pointer-events:auto;
   padding:10px 12px;
@@ -392,7 +392,7 @@ body.statement-mode #key {
   display:none;
 }
 
-.link-layer{
+.link-layer {
   position:absolute;
   inset:0;
   width:100%;
@@ -401,7 +401,33 @@ body.statement-mode #key {
   z-index:2;
 }
 
-.link-line{
+.link-line {
   vector-effect: non-scaling-stroke;
   stroke-linecap: round;
 }
+
+#toggle-lines {
+  position:fixed;
+  right:14px;
+  bottom:23px;
+  z-index:9;
+  padding:7px 12px;
+  font-size:12px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.35);
+  background:#121212;
+  color:whitesmoke;
+  cursor:pointer;
+  transition:transform .08s ease, background .3s ease, opacity .3s ease;
+}
+
+#toggle-lines:active {
+  transform:scale(.98);
+}
+
+#toggle-lines:hover {
+  background:#171717;
+}
+
+body.seq-mode #toggle-lines,
+body.statements-mode #toggle-lines{ display:none; }

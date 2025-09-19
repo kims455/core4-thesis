@@ -522,6 +522,40 @@ function getThemeCenter(themeKey){
   return { x: c.cx * window.innerWidth, y: c.cy * window.innerHeight };
 }
 
+initLinkLayer();
+
+var linesHidden = false;
+var toggleBtn = null;
+
+function refreshLinesToggleUI(){
+  if (linkSVG) linkSVG.style.display = linesHidden ? 'none' : 'block';
+  if (toggleBtn) {
+    toggleBtn.textContent = linesHidden ? 'Show connections' : 'Hide connections';
+    toggleBtn.setAttribute('aria-pressed', linesHidden ? 'true' : 'false');
+  }
+}
+
+function bindToggle(){
+  toggleBtn = document.getElementById('toggle-lines');
+  if (!toggleBtn) {
+    console.warn('#toggle-lines not found');
+    return;
+  }
+  toggleBtn.addEventListener('click', function(){
+    linesHidden = !linesHidden;
+    refreshLinesToggleUI();
+  });
+  refreshLinesToggleUI();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindToggle);
+} else {
+  bindToggle();
+}
+
+window.addEventListener('resize', refreshLinesToggleUI);
+
 // apply zoom (Neurons)
 function applyFocus() {
   if (!isNeuronsMode) return;
@@ -624,7 +658,6 @@ function positionLabels() {
 }
 buildLabels();
 window.addEventListener("resize", positionLabels);
-
 
 // Animation
 var last = 0, SPEED = 0.18;
