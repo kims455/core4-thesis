@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://use.typekit.net/rhj3kjw.css">
+  <title>You Are Fading With the System</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "retros", sans-serif;
+    }
+    model-viewer{width:100%;height:100%;background:#80c0ff;}
+    h1 {
+      text-align: center;
+      font-size: 30pt;
+      background-color: none;
+    }
+    .hotspot{
+      all:unset;
+      background:#f7ff81;
+      padding:6px 10px;
+      border-radius:10px;
+      font:13px/1.2;
+      font-family: "retros", sans-serif;
+      font-weight: 300;
+      font-style: normal;
+      cursor:pointer;
+    }
+  </style>
+   <script type="importmap">
+      {
+				"imports": {
+					"three": "https://cdn.jsdelivr.net/npm/three@0.175/build/three.module.js",
+          "jsm/": "https://cdn.jsdelivr.net/npm/three@0.175/examples/jsm/",
+          "rapier": "https://cdn.skypack.dev/@dimforge/rapier3d-compat"
+        }
+			}
+    </script>
+</head>
+<body>
+  <h1>Defamiliarization + Digital obsolescence</h1>
+  
+  <model-viewer
+    src="models/room.glb"
+    camera-controls
+    auto-rotate
+    exposure="1.1"
+    shadow-intensity="1"
+    shadow-softness="0.6"
+    interaction-prompt="none"
+    ar
+    environment-image="neutral"
+    skybox-image=""
+    field-of-view="50deg"
+    camera-orbit="0deg 60deg 5m">
+
+    <!-- Example hotspot -->
+    <button class="hotspot"
+            slot="hotspot-1"
+            data-position="0 1 0"
+            data-normal="0 1 0"
+            data-visibility-attribute="visible">
+      is this a chair or a memory?
+    </button>
+  </model-viewer>
+
+  <script type="module" src="main.js"></script>
+
+</body>
+</html>

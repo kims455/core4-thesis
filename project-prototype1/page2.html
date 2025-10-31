@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Live.Leave.Love Your Trace</title>
+  <link rel="stylesheet" href="https://use.typekit.net/rhj3kjw.css">
+  <link rel="icon" href="assets/dash-circle.png" type="image/png">
+  <link rel="stylesheet" href="page2.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap');
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- 파일 업로드 (5장 업로드 시 글리치 시작) -->
+  <form id="uploadForm" class="overlay overlay-bottom">
+    <input type="file" id="photoUpload" accept="image/*" multiple aria-label="Upload photos">
+  </form>
+
+  <!-- 글리치 그릴 캔버스 -->
+  <canvas id="glitch" class="glitch hidden" aria-hidden="true"></canvas>
+
+  <!-- 최종 메시지 (선택) -->
+  <div id="finalMsg" class="final hidden" role="status" aria-live="polite">
+    I'm sorry, I can't keep your stories and photos anymore.
+  </div>
+
+  <!-- 풀스크린 카메라 뷰 -->
+  <!-- <video id="camera" autoplay playsinline muted></video> -->
+
+  <!-- 자동 실행이 막힌 환경(iOS 등) 대비용 -->
+  <!-- <button id="startCam" class="start-btn" hidden>Tap to Start Camera</button> -->
+
+  <!-- 오류 메시지 -->
+  <!-- <div id="error" class="error" aria-live="polite" hidden></div> -->
+
+  <!-- <audio id="bgm" src="assets/soundscape.mp3" loop></audio> -->
+
+  <script type="module" src="page2.js"></script>
+</body>
+</html>

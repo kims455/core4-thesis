@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Live.Leave.Love Your Trace</title>
+  <link rel="stylesheet" href="https://use.typekit.net/rhj3kjw.css">
+  <link rel="icon" href="assets/dash-circle.png" type="image/png">
+  <link rel="stylesheet" href="experience.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap');
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="intro" class="intro" aria-live="polite" aria-label="Welcome">
+    <div class="intro-inner">
+      <span class="intro-line">Welcome back.</span>
+      <!-- <span class="intro-hint"></span> -->
+    </div>
+  </div>
+
+  <div id="objectShelf" class="object-shelf">
+     <span class="instruction">Decorate<br>your space:</span>
+  </div>
+
+  <div class="bg-controls">
+    <input type="color" id="bgColor" value="#ffffff">
+  </div>
+
+  <canvas id="webgl"></canvas>
+
+  <div id="progress" class="progress" role="status" aria-live="polite" aria-label="Upload progress">
+    <div id="progressFill" class="progress-fill" style="width:0%"></div>
+    <div id="progressLabel" class="progress-label">0 / 5</div>
+  </div>
+
+  <canvas id="glitch" class="glitch hidden"></canvas>
+
+  <form id="uploadForm">
+    <label for="photoUpload" class="upload-circle">Upload</label>
+    <input type="file" id="photoUpload" accept="image/*" multiple>
+  </form>
+
+  <div id="finalMsg" class="final hidden">
+    I'm sorry, I can't keep your stories and photos anymore.
+  </div>
+
+  <!-- <audio id="bgm" src="assets/soundscape.mp3" loop></audio> -->
+
+  <script type="module" src="experience.js"></script>
+</body>
+</html>
