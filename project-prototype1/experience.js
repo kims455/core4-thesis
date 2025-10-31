@@ -1,11 +1,9 @@
-/* ==== imports ==== */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 localStorage.removeItem('glitchSnapshots_v1');
 
-/* ==== grab DOM ==== */
 const canvas       = document.getElementById('webgl');
 const uploadInput  = document.getElementById('photoUpload');
 const glitchCanvas = document.getElementById('glitch');
@@ -17,11 +15,9 @@ const introEl      = document.getElementById('intro');
 const shelfEl      = document.getElementById('objectShelf');
 const bgColorInput = document.getElementById('bgColor');
 
-/* ==== basic helpers ==== */
 function rand(min, max){ return min + Math.random()*(max-min); }
 function clamp01(v){ return Math.min(1, Math.max(0, v)); }
 
-/* ==== list of models + matching GIFs ==== */
 const MODELS = [
   'chair.glb','ugg.glb','kitty.glb','lotion.glb',
   'mouthwash.glb','airpodmax.glb','remote.glb','hydroflask.glb'
@@ -38,14 +34,12 @@ const THUMBS = {
   'hydroflask.glb':'thumbs/hydroflask.gif'
 };
 
-/* ==== upload/glitch config ==== */
 const MAX_KEEP = 5;
 let kept = 0;
 const glitchCtx = glitchCanvas.getContext('2d');
 const savedGlitchImgs = [];
 const texLoader = new THREE.TextureLoader();
 
-/* ==== clone chaos settings ==== */
 const CHAOS = {
   batchMin: 10, batchMax: 24, maxObjects: 1200,
   scaleMin: 0.6, scaleMax: 1.8,
@@ -53,11 +47,9 @@ const CHAOS = {
   velMin: -0.06, velMax: 0.06, damping: 0.995
 };
 
-/* ==== localStorage keys for glitch snapshots ==== */
 const SNAP_KEY = 'glitchSnapshots_v1';
 const SNAP_LIMIT = 20;
 
-/* ==== Q&A text ==== */
 const QUESTIONS = [
   "What do you usually keep on your phone that feels important?",
   "How would you feel if all your photos disappeared tomorrow?",
@@ -80,7 +72,6 @@ const QUESTIONS = [
   "What would happen if your memories could delete themselves?"
 ];
 
-/* ==== small util ==== */
 function escapeHTML(s){
   return String(s).replace(/[&<>"']/g, (m)=>({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
@@ -94,11 +85,11 @@ let webcamMesh = null;
 
 const raycaster = new THREE.Raycaster();
 const ndc = new THREE.Vector2();
-const hoverables = new Set(); // things you can hover/click
-const objects = [];           // all drifting things
-const bodies  = [];           // for spacing (findSpot)
+const hoverables = new Set();
+const objects = [];
+const bodies  = [];
 
-const lookLerp = new THREE.Vector2(0,0); // gentle world rotation
+const lookLerp = new THREE.Vector2(0,0);
 
 initThree();
 animate();
@@ -107,7 +98,6 @@ animate();
 function initThree(){
   scene = new THREE.Scene();
 
-  // environment cube (you have 6 images in /assets)
   const env = new THREE.CubeTextureLoader().load(
     ['px','nx','py','ny','pz','nz'].map(s => `assets/${s}.png`)
   );
@@ -125,7 +115,6 @@ function initThree(){
   controls.enableDamping = true;
   controls.enablePan = false;
 
-  // simple lights
   scene.add(new THREE.AmbientLight(0xffffff, 1.4));
   const dir = new THREE.DirectionalLight(0xffffff, 2);
   dir.position.set(5,10,7);
@@ -134,7 +123,6 @@ function initThree(){
   world = new THREE.Group();
   scene.add(world);
 
-  // events
   window.addEventListener('resize', onResize);
   window.addEventListener('pointermove', onPointerMove);
   window.addEventListener('click', onClickAnywhere);
@@ -159,13 +147,10 @@ function initThree(){
     });
   }
 
-  // load glitch snapshots from previous session
   loadSnapshots();
 
-  // build the left shelf of GIF thumbnails
   buildShelf();
 
-  // show intro greeting then fade out
   showIntro();
 }
 
@@ -197,7 +182,6 @@ function buildShelf(){
 function showIntro(){
   if (!introEl) return;
 
-  // reveal text a bit later so first frame stays black
   setTimeout(()=> introEl.classList.add('reveal'), 600);
 
   function closeIntro(){
@@ -205,14 +189,13 @@ function showIntro(){
     setTimeout(()=> introEl.remove(), 3000);
   }
 
-  const timer = setTimeout(closeIntro, 4000);
+  const timer = setTimeout(closeIntro, 3000);
   introEl.addEventListener('click', ()=>{ clearTimeout(timer); closeIntro(); });
   window.addEventListener('keydown', (e)=>{
     if (!e.repeat){ clearTimeout(timer); closeIntro(); }
   });
 }
 
-/* --- handle window resize --- */
 function onResize(){
   camera.aspect = window.innerWidth/window.innerHeight;
   camera.updateProjectionMatrix();
@@ -244,7 +227,6 @@ function animate(t=0){
 
   const time = t * 0.001;
   for (const o of objects){
-    // ⛔ keep shelf-added items still
     if (o.userData && o.userData.static) continue;
 
     if (o.userData && o.userData.vel){
@@ -343,13 +325,12 @@ function spawnManualObject(modelName, options){
       obj.position.set(0, 0, -4);
     }
 
-    // 👇 keep still
     obj.rotation.set(0, 0, 0);
-    obj.userData.static = true;   // <- mark as static
-    obj.userData.speed  = 0;      // no float
+    obj.userData.static = true;
+    obj.userData.speed  = 0;
     obj.userData.phase  = 0;
     obj.userData.baseY  = obj.position.y;
-    delete obj.userData.vel;      // no drift velocity
+    delete obj.userData.vel;
 
     addObject(obj);
   });
@@ -371,7 +352,6 @@ function enableShelfDrag(el, modelName){
     document.removeEventListener('pointermove', onMove);
     document.removeEventListener('pointerup', onUp);
 
-    // make a plane in front of the camera and drop there
     ndc.set((e.clientX / window.innerWidth)*2 - 1, -(e.clientY / window.innerHeight)*2 + 1);
     raycaster.setFromCamera(ndc, camera);
 
@@ -389,18 +369,6 @@ function enableShelfDrag(el, modelName){
 
   el.addEventListener('pointerdown', (e)=>{
     e.preventDefault();
-
-    // little ghost image following the cursor
-    ghost = el.cloneNode(true);
-    ghost.style.position = 'fixed';
-    ghost.style.pointerEvents = 'none';
-    ghost.style.opacity = '0.8';
-    ghost.style.transform = 'none';
-    ghost.style.left = (e.clientX + 8) + 'px';
-    ghost.style.top  = (e.clientY + 8) + 'px';
-    ghost.style.zIndex = '10000';
-    document.body.appendChild(ghost);
-
     document.addEventListener('pointermove', onMove);
     document.addEventListener('pointerup', onUp);
   });
@@ -630,10 +598,8 @@ function startGlitch(){
   glitchCanvas.classList.remove('hidden');
   window.addEventListener('resize', resizeGlitch);
 
-  // 🎨 pick a random bright color for the GLITCH CANVAS background
   const glitchBg = `hsl(${Math.floor(Math.random()*360)}, 90%, 60%)`;
 
-  // 🔔 classic blocking popup ~4.5s after glitch begins
   let popupTimer = setTimeout(() => {
     alert("Whoa, what just happened? Sorry for the inconvenience. Don't worry, and keep leaving your trace. I will store it for you.");
   }, 4500);
@@ -643,14 +609,12 @@ function startGlitch(){
   let tile = 64;
   const max = 520;
 
-  // first paint with the random color
   glitchCtx.fillStyle = glitchBg;
   glitchCtx.fillRect(0,0,glitchCanvas.width, glitchCanvas.height);
 
   function draw(){
     t++;
 
-    // periodic clear — use the SAME random color (not black)
     if (t % 28 === 0){
       glitchCtx.fillStyle = glitchBg;
       glitchCtx.fillRect(0,0,glitchCanvas.width, glitchCanvas.height);
@@ -689,7 +653,6 @@ function startGlitch(){
   function endGlitch(){
     window.removeEventListener('resize', resizeGlitch);
 
-    // capture last frame (may fail if cross-origin)
     let snapURL = null;
     try { snapURL = glitchCanvas.toDataURL('image/png'); } catch(e){}
 
@@ -729,7 +692,6 @@ function startGlitch(){
     }
   }
 }
-
 
 /* ==================== save/load glitch snapshots ==================== */
 function saveSnapshot(dataUrl){
@@ -788,7 +750,6 @@ function makeBubble(){
   `;
   document.body.appendChild(el);
 
-  // random place on screen
   const padX = 24, padY = 24;
   const maxW = Math.min(560, window.innerWidth - 2*padX);
   el.style.maxWidth = maxW + 'px';
