@@ -98,13 +98,11 @@ animate();
 function initThree(){
   scene = new THREE.Scene();
 
-  // const env = new THREE.CubeTextureLoader().load(
-  //   ['px','nx','py','ny','pz','nz'].map(s => `assets/${s}.png`)
-  // );
-  // scene.background = env;
-  // scene.environment = env;
-
-  scene.background = new THREE.Color(0xffffff);
+  const env = new THREE.CubeTextureLoader().load(
+    ['px','nx','py','ny','pz','nz'].map(s => `assets/${s}.png`)
+  );
+  scene.background = env;
+  scene.environment = env;
 
   renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
